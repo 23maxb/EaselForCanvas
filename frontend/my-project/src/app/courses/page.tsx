@@ -6,7 +6,7 @@ const courses = [
     "Course 1: Introduction to Programming",
     "Course 2: Advanced JavaScript",
     "Course 3: React for Beginners",
-    "Course 4: TypeScript Essentials"
+    "Course 4: School Essentials"
 ];
 
 const Page = () => {
