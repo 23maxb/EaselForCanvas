@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "concurrently \"cd backend/my-project && deno run dev\" \"cd frontend/my-project && npm run dev\""
+    "start": "concurrently \"cd backend/my-project && deno run dev\" \"cd frontend/my-project && npm run dev\"",
+    "dependencies": "concurrently \"cd backend/my-project && deno cache main.ts\" \"cd frontend/my-project && npm i\""
   },
   "devDependencies": {
     "concurrently": "^9.0.1"

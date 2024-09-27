@@ -1,13 +1,11 @@
-export function server(): void {
-    const port = 8080;
+import express from "npm:express@4.21.0";
+export function server(): number {
+    const app = express();
 
-    const handler = (request: Request): Response => {
-        const body = `Your user-agent is:\n\n${
-            request.headers.get("user-agent") ?? "Unknown"
-        }`;
-        return new Response(body, { status: 200 });
-    };
+    app.get("/", (req, res) => {
+        res.send("Welcome to the Dinosaur API!");
+    });
 
-    console.log(`HTTP server running. Access it at: http://localhost:${port}/`);
-    Deno.serve({ port }, handler);
+    app.listen(8000);
+    return 0;
 }
