@@ -1,10 +1,8 @@
 import express from "npm:express@4.21.0";
-import { config } from "https://deno.land/x/dotenv/mod.ts";
 import axios from "npm:axios@1.7.7";
 import env = Deno.env;
 
 async function getCourses() {
-    
     const CANVAS_LMS_KEY = env.get("CANVAS_LMS_KEY");
     try {
         console.log(CANVAS_LMS_KEY);
