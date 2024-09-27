@@ -2,18 +2,20 @@ import Course from "./Course.ts";
 
 /** */
 export default class User {
-    name: string;
+    name: string | undefined;
     preferredname: string | undefined;
     courses: Course[] | undefined;
+    token: string;
+    rawData: JSON | undefined;
+    constructor(token: string) {
+        this.token = token;
+        this.buildUser(token).then((_result) => {
+            this.rawData = _result;
+        });
+        return this;
+    }
 
-    constructor(name: string, age: number) {
-        this.name = name;
-        this.age = age;
-    }
-    greet() {
-        return `Hello, ${this.name}`;
-    }
-    getAge() {
-        return this.age;
+    async buildUser(token: string): Promise<JSON> {
+        CanvasRequest.getUserInfo();
     }
 }
