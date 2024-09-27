@@ -4,10 +4,11 @@ import env = Deno.env;
 
 async function getCourses() {
     const CANVAS_LMS_KEY = env.get("CANVAS_LMS_KEY");
+    const CANVAS_LMS_URL = env.get("CANVAS_LMS_URL");
     try {
         console.log(CANVAS_LMS_KEY);
         const response = await axios.get(
-            "https://canvas.instructure.com/api/v1/courses",
+            `${CANVAS_LMS_URL}/api/v1/courses`,
             {
                 headers: {
                     "Authorization": `Bearer ${CANVAS_LMS_KEY}`,
