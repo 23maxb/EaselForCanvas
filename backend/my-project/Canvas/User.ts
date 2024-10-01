@@ -20,7 +20,7 @@ export const USER_RESOURCES = new Set([
 export default class User {
     token: string;
     rawData: Record<string, any> | undefined;
-    rawCourses: JSON[] | undefined;
+    courses: Course[] | undefined;
 
     constructor(token: string) {
         this.token = token;
@@ -31,19 +31,15 @@ export default class User {
     }
 
     async initCourses() {
-        this.rawCourses = await getCourses(this.token);
-        console.log(this.rawCourses);
+        const rawCourses =await  Course.fromUser(this.token);
     }
 
     async getResource(resource: string): Promise<string> {
         if (resource.startsWith("course_")) {
-            const requestedCourseData = resource.split("_");
-            if (this.rawCourses === undefined) {
+            if (this.courses === undefined) {
                 await this.initCourses();
             }
-            if (resource.length == 2) {
-                return this.rawCourses[requestedCourseData[1]];
-            }
+            const requestedCourseData = resource.split("_");
         }
         if (!USER_RESOURCES.has(resource)) {
             throw new Error(

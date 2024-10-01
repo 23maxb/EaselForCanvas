@@ -10,6 +10,7 @@ export function server(): number {
     app.get("/", async (req: string, res: { send: (arg0: string) => void }) => {
         let b = new User(env.get("CANVAS_LMS_KEY") || "");
         await b.init();
+        await b.initCourses();
         res.send(await b.getResource("name") || "name fetch failed");
     });
 
