@@ -1,11 +1,21 @@
-import axios from "npm:axios@1.7.7";
+import axios, { AxiosResponse } from "npm:axios@1.7.7";
 
+/**
+ * This api accesses the canvas api:
+ * https://canvas.instructure.com/doc/api/
+ *
+ * @param canvasKey the api key to access canvas lms
+ * @param path path to resource. If you don't know how to access the correct path please call the other methods in this library.
+ * @param headers headers to pass into the call
+ * @param formInfo form information to pass into the call
+ */
 export default async function getResource(
     canvasKey: string | undefined,
     path: string,
     headers: Record<string, string>,
     formInfo: Record<string, string>,
-): Promise<Blob> {
+    // deno-lint-ignore no-explicit-any
+): Promise<AxiosResponse<any, any>> {
     const CANVAS_LMS_URL = Deno.env.get("CANVAS_LMS_URL");
 
     if (headers.Authorization === undefined) {
@@ -27,14 +37,14 @@ export default async function getResource(
     throw new Error("Error fetching resource");
 }
 
-export function getCourses(canvasKey: string): Promise<Blob> {
+export function getCourses(canvasKey: string) {
     return getResource(canvasKey, "/api/v1/courses", {}, {});
 }
 
-export async function getUserInfo(
+export function getUserInfo(
     canvasKey: string,
-    userId: string | undefined,
-): Promise<Blob> {
+    userId?: string | undefined,
+) {
     const baseIncludes = [
         "locale",
         "avatar_url",
@@ -44,7 +54,7 @@ export async function getUserInfo(
         "uuid",
         "last_login",
     ];
-    return await getResource(
+    return getResource(
         canvasKey,
         `/api/v1/users/${userId || "self"}`,
         {},
