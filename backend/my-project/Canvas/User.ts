@@ -1,6 +1,5 @@
 import Course from "./Course.ts";
-import { getCourses, getUserInfo } from "./CanvasRequest.ts";
-import ResourceMap = Deno.ResourceMap;
+import { getUserInfo } from "./CanvasRequest.ts";
 
 export const USER_RESOURCES = new Set([
     "name",
@@ -20,7 +19,7 @@ export const USER_RESOURCES = new Set([
 export default class User {
     token: string;
     rawData: Record<string, any> | undefined;
-    courses: Course[] | undefined;
+    courses: Promise<Course[]> | undefined;
 
     constructor(token: string) {
         this.token = token;
@@ -30,8 +29,9 @@ export default class User {
         this.rawData = await getUserInfo(this.token);
     }
 
-    async initCourses() {
-        const rawCourses =await  Course.fromUser(this.token);
+    async initCourses(): Promise<Course[]> {
+        this.courses = Course.fromUser(this.token);
+        return this.courses;
     }
 
     async getResource(resource: string): Promise<string> {
@@ -40,10 +40,14 @@ export default class User {
                 await this.initCourses();
             }
             const requestedCourseData = resource.split("_");
+            
+            if (requestedCourseData[1] == "list") {
+                return (this.courses[0]);
+            }
         }
         if (!USER_RESOURCES.has(resource)) {
             throw new Error(
-                `Invalid resource. User resources available: ${resource}`,
+                `${resource} is not a valid resource. User resources available:`,
             );
         }
         if (this.rawData === undefined) {

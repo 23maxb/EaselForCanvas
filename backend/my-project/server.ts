@@ -11,7 +11,7 @@ export function server(): number {
         let b = new User(env.get("CANVAS_LMS_KEY") || "");
         await b.init();
         await b.initCourses();
-        res.send(await b.getResource("name") || "name fetch failed");
+        res.send(await b.getResource("course_list") || "name fetch failed");
     });
 
     console.log(`Server spawned on localhost:${port}`);
