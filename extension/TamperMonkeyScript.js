@@ -49,9 +49,7 @@
             endTime = addTime(str.substring(len - 8), 2, 45);
         }
 
-        const today = new Date();
-        const currentTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 11, 0, 0, 0);
-
+        const currentTime = new Date();
         const [startHours, startMinutes, startModifier] = str.substring(len - 8).split(/[: ]/);
         let startHours24 = parseInt(startHours, 10);
         if (startModifier === 'PM' && startHours24 !== 12) {
@@ -104,7 +102,7 @@
 
         return str + ' - ' + endTime + timeMessage;
     }
-    
+
     function replaceTextInElement(element) {
         if (element.hasChildNodes()) {
             element.childNodes.forEach(child => {
