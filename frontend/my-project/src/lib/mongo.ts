@@ -1,12 +1,12 @@
-import { MongoClient } from 'mongodb';
+import {MongoClient} from 'mongodb';
 
 const uri = "mongodb+srv://mblennemann:vHQtpKWl3Km7UAmR@cluster0.jqf5l.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
-if (!process.env.MONGODB_URI) {
-    throw new Error('Please add your Mongo URI to .env.local');
+if ((!process.env.MONGODB_URI) && !uri) {
+    throw new Error('Please add your Mongo URI to .env.local or put it above.');
 }
 
 const options = {};

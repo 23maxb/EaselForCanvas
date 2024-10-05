@@ -51,7 +51,7 @@ const Sidebar: React.FC = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/forums" className="flex items-center space-x-3 hover:text-gray-300 transition-all duration-300">
+                    <Link href="/forum" className="flex items-center space-x-3 hover:text-gray-300 transition-all duration-300">
                         <MessageCircleIcon className="h-6 w-6" />
                         <span>Forums</span>
                     </Link>
