@@ -1,7 +1,7 @@
 // components/Sidebar.tsx
 import React from 'react';
 import Link from 'next/link';
-import { HomeIcon, BookOpenIcon, CalendarIcon, InboxIcon, HistoryIcon, HelpCircleIcon, ArchiveIcon } from "lucide-react"; // ShadCN icon imports
+import { HomeIcon, BookOpenIcon, CalendarIcon, InboxIcon, HistoryIcon, HelpCircleIcon, ArchiveIcon, MessageCircleIcon } from "lucide-react"; // ShadCN icon imports
 
 const Sidebar: React.FC = () => {
     return (
@@ -48,6 +48,12 @@ const Sidebar: React.FC = () => {
                     <Link href="/library" className="flex items-center space-x-3 hover:text-gray-300 transition-all duration-300">
                         <ArchiveIcon className="h-6 w-6" />
                         <span>Library</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/forums" className="flex items-center space-x-3 hover:text-gray-300 transition-all duration-300">
+                        <MessageCircleIcon className="h-6 w-6" />
+                        <span>Forums</span>
                     </Link>
                 </li>
             </ul>

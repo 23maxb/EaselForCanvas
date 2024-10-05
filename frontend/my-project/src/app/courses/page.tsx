@@ -1,25 +1,38 @@
 "use client";
 
 import React from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card"; // Ensure you have shadcn Card components
+import { Button } from "@/Components/ui/button";
 
 const courses = [
-    "Course 1: Introduction to Programming",
-    "Course 2: Advanced JavaScript",
-    "Course 3: React for Beginners",
-    "Course 4: School Essentials"
+    { title: "Introduction to Programming", description: "Learn the basics of programming with hands-on exercises." },
+    { title: "Advanced JavaScript", description: "Deep dive into JavaScript, closures, and advanced patterns." },
+    { title: "React for Beginners", description: "Get started with React and build interactive UIs." },
+    { title: "School Essentials", description: "A foundational course covering essential school subjects." },
 ];
 
 const Page = () => {
     return (
-        <div className="p-6 font-sans">
-            <h1 className="text-2xl font-bold text-gray-800 border-b-2 border-gray-300 pb-2 mb-4">Courses</h1>
-            <ul className="list-none p-0 flex flex-wrap gap-4">
+        <div className="p-6 font-sans max-w-7xl mx-auto">
+            <h1 className="text-4xl font-bold text-gray-900 mb-6">Courses</h1>
+
+            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {courses.map((course, index) => (
-                    <li key={index} className="py-2 px-4 bg-blue-100 text-blue-800 rounded-full shadow-md">
-                        {course}
-                    </li>
+                    <Card key={index} className="shadow-lg">
+                        <CardHeader>
+                            <CardTitle className="text-xl font-semibold text-gray-900">
+                                {course.title}
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-gray-700 mb-4">{course.description}</p>
+                            <Button variant="outline" className="w-full text-blue-600 hover:bg-blue-50">
+                                Enroll Now
+                            </Button>
+                        </CardContent>
+                    </Card>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };
