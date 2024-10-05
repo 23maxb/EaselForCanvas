@@ -70,7 +70,7 @@
             5: 'F',
             6: 'S'
         };
-
+        const today = new Date();
         const todayDay = daysOfWeek[today.getDay()];
         if (!str.includes(todayDay)) {
             return str + ' - ' + endTime;

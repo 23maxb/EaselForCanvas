@@ -1,12 +1,15 @@
 // ==UserScript==
 // @name         Adds date/time stamps and a new scheduling page to canvas
 // @namespace    https://google.com
-// @version      2024-10-05
+// @version      2024-10-06
 // @description  just check the name
 // @author       Max Blennemann (github.com/23maxb)
+// @license MIT
 // @match        *camino.instructure.com/*
 // @icon         https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcFJEH7ViWu8voM-K5a5aspXQkvpmt7I3Okg&s
 // @grant        none
+// @downloadURL https://update.greasyfork.org/scripts/511548/Adds%20datetime%20stamps%20and%20a%20new%20scheduling%20page%20to%20canvas.user.js
+// @updateURL https://update.greasyfork.org/scripts/511548/Adds%20datetime%20stamps%20and%20a%20new%20scheduling%20page%20to%20canvas.meta.js
 // ==/UserScript==
 
 (function () {
@@ -81,7 +84,7 @@
             5: 'F',
             6: 'S'
         };
-
+        const today = new Date();
         const todayDay = daysOfWeek[today.getDay()];
         if (!str.includes(todayDay)) {
             return str + ' - ' + endTime;
