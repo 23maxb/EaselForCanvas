@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Easel For Canvas",
+  "version": "1.0",
+  "description": "This extension adds timestamps for beginning and ending of class times into canvas.",
+  "author": "Max Blennemann (github.com/23maxb)",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://camino.instructure.com/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}

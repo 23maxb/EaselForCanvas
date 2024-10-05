@@ -59,11 +59,12 @@ export default class Course {
 
     static async fromUser(token: string): Promise<Course[]> {
         const b = getCourses(token);
-        return b.then((data) => {
+        return b.then((d) => {
             let toReturn: Course[] = [];
-            for (let i = 0; i < data.length; i++) {
-                console.log(data[i]);
-                toReturn[i] = new Course(data[i]);
+            console.log(d.data);
+            for (let i = 0; i < 1; i++) {
+                console.log(d.data[i]);
+                toReturn[i] = new Course(d.data[i]);
             }
             return toReturn;
         });
