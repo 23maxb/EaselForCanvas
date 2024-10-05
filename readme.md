@@ -5,6 +5,14 @@
 This project consists of a Deno backend and a Next.js frontend. Below are the instructions to start both the backend
 server and the frontend application.
 
+## Extension/Userscript
+
+Most of this repository is a work in progress. There is a prototype extension with a single feature in the extension directory. 
+If you're just looking for that download you can go to releases or install from the link below if you have tampermonkey.
+
+https://greasyfork.org/en/scripts/511548-adds-date-time-stamps-and-a-new-scheduling-page-to-canvas
+
+
 ## Prerequisites
 
 - [Deno](https://deno.land/#installation)
